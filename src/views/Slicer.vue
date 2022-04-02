@@ -29,7 +29,7 @@ export default {
 		return {
 			chosenViruses: [],
 			cutFactor: 5,
-			nbMutation: 10,
+			nbMutation: 10
 		}
 	},
 	components: {
