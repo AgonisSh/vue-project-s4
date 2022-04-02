@@ -1,5 +1,31 @@
 <template>
 	<div id="app">
+    <v-app>
+      <v-app-bar
+          absolute
+          color="teal lighten-3"
+          hide-on-scroll
+          rounded
+      >
+        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+        <v-toolbar-title><NavBar :titles="titles"/></v-toolbar-title>
+
+      </v-app-bar>
+      <br>
+      <br>
+      <br>
+      <br>
+      <v-footer
+          v-bind="localAttrs"
+          :padless="padless"
+      >
+        <router-view name="locCentral"></router-view>
+      </v-footer>
+
+
+    </v-app>
+
 		<NavBar :titles="titles"/>
 		<keep-alive>
 			<router-view name="locCentral"></router-view>
