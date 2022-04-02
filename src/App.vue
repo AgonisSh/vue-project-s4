@@ -9,9 +9,8 @@
       >
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
 
-        <v-toolbar-title>Menu</v-toolbar-title>
+        <v-toolbar-title><NavBar :titles="titles"/></v-toolbar-title>
 
-        <NavBar :titles="titles"/>
       </v-app-bar>
       <br>
       <br>
