@@ -1,32 +1,56 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
-  </div>
+	<div id="app">
+    <v-app>
+      <v-app-bar
+          absolute
+          color="teal lighten-3"
+          hide-on-scroll
+          rounded
+      >
+        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+
+        <v-toolbar-title>Menu</v-toolbar-title>
+
+        <NavBar :titles="titles"/>
+      </v-app-bar>
+      <br>
+      <br>
+      <br>
+      <br>
+      <v-footer
+          v-bind="localAttrs"
+          :padless="padless"
+      >
+        <router-view name="locCentral"></router-view>
+      </v-footer>
+
+
+    </v-app>
+
+	</div>
 </template>
 
+<script>
+import NavBar from './components/NavBar.vue'
+
+export default {
+	name: 'App',
+	data: () => {
+		return {
+			titles: [{text: "Home", color: "black", path: "/home"}, {
+				text: "Lab",
+				color: "blue",
+				path: "/labo/slice"
+			}, {text: "Library", color: "red", path: "/library/view"}],
+			currentMenu: 0
+		}
+	},
+	components: {
+		NavBar
+	}
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>

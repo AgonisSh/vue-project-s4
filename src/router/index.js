@@ -1,22 +1,60 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Home from '../views/Home.vue'
+import Labo from '../views/Labo.vue'
+import Library from '../views/Library.vue'
+import Basket from '../views/Basket.vue'
+import Slicer from '../views/Slicer.vue'
+import Mixer from '../views/Mixer.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'home',
-    component: HomeView
+    path: '/home',
+    name: 'Home',
+    components: {
+      locCentral: Home
+    }
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/labo',
+    name: 'Labo',
+    components: {
+      locCentral: Labo
+    },
+    children: [
+      {
+        path: 'slice',
+        components: {
+          locSubCentral: Slicer
+        }
+      },
+      {
+        path: 'mix',
+        components: {
+          locSubCentral: Mixer
+        }
+      }
+    ]
+  },
+  {
+    path: '/library',
+    name: 'Library',
+    components: {
+      locCentral: Library
+    },
+    children: [
+      {
+        path: ':op',
+        components: {
+          locDown : Basket
+        },
+        props: {
+          locDown: route => ({operation:route.params.op, name: route.query.name, code:route.query.code}),
+        }
+      }
+    ]
   }
 ]
 
