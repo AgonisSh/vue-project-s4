@@ -6,7 +6,7 @@
 			</tr>
 			<tr>
 				<td>
-					<CheckedList :fields="['code']" :entries="parts" @chosen-changed="chosenParts = $event"/>
+					<CheckedList :fields="['code']" :entries="$store.state.parts" @chosen-changed="chosenParts = $event"/>
 				</td>
 			</tr>
 		</table>
