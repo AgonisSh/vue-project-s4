@@ -13,13 +13,15 @@
 				<td>{{ v.mortalite }}</td>
 			</tr>
 		</table>
-		<button @click="sendToLab">Send to the lab</button>
+
+
+		<v-btn class="light-blue darken-3 white--text" @click="sendToLab">Send to the lab</v-btn>
 	</div>
 </template>
 
 <script>
 
-import {Virus} from "../model";
+import {Virus} from "@/model";
 
 export default {
 	name: 'Basket',

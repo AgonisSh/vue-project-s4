@@ -1,33 +1,19 @@
 <template>
   <div id="app">
-    <v-app>
-      <v-app-bar
-          absolute
-          color="teal lighten-3"
-          hide-on-scroll
-          rounded
-      >
-        <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
-        <v-toolbar-title>
-          <NavBar :titles="titles"/>
-        </v-toolbar-title>
-
-      </v-app-bar>
+    <v-app class="grey darken-4 white--text">
+          <NavBar :titles="titles"></NavBar>
       <br>
       <br>
       <br>
-      <v-main>
+      <router-view name="locCentral"></router-view>
 
-
-        <!-- Provides the application the proper gutter -->
-        <v-container fluid>
-
-          <!-- If using vue-router -->
-          <router-view name="locCentral"></router-view>
-        </v-container>
-      </v-main>
-
+      <v-footer color="primary lighten-1" absolute padless>
+        <v-row justify="center" no-gutters>
+          <v-col class="primary lighten-2 py-4 text-center white--text" cols="12">
+            {{ new Date().getFullYear() }} — <strong>IUT Belfort Montbelliard</strong>
+          </v-col>
+        </v-row>
+      </v-footer>
 
     </v-app>
 
@@ -41,11 +27,9 @@ export default {
   name: 'App',
   data: () => {
     return {
-      titles: [{text: "Home", color: "black", path: "/home"}, {
-        text: "Lab",
-        color: "blue",
-        path: "/labo/slice"
-      }, {text: "Library", color: "red", path: "/library/view"}],
+      titles: [{text: "Home", color: "black", path: "/home", icon: "home"},
+        {text: "Lab", color: "blue", path: "/labo/slice", icon: "build"},
+        {text: "Library", color: "red", path: "/library/view", icon: "search"}],
       currentMenu: 0
     }
   },
@@ -56,11 +40,5 @@ export default {
 </script>
 
 <style>
-#app {
-	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-align: center;
-	color: #2c3e50;
-}
+
 </style>
