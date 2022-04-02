@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {viruses} from '@/model'
+import {viruses} from '../model.js'
 
 Vue.use(Vuex)
 
