@@ -4,6 +4,7 @@
 				:headers="headers"
 				:items="$store.state.collec"
 				item-key="name"
+				class="elevation-1"
 		>
 			<template v-slot:item="{item}">
 				<tr>
@@ -29,7 +30,7 @@
 				headers: [
 					{ text: "Name", value: "name" },
 					{ text: "Code", value: "code"},
-					{ text: "Mortality", value: "mortality"},
+					{ text: "Mortality", value: "mortalite"},
 					{ text: "", value: "button", sortable: false}
 				]
 			}

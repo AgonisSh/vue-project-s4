@@ -1,17 +1,15 @@
 <template>
   <div>
     <h1>Labo</h1>
-    <table border="0">
-      <tr>
-        <td><h1>Viruses</h1></td>
-      </tr>
-      <tr>
-        <td>
-          <CheckedList :fields="['name','code']" :entries="$store.state.samples"
-                       @chosen-changed="chosenViruses = $event"/>
-        </td>
-      </tr>
-    </table>
+		<v-data-table
+				v-model="chosenViruses"
+				:headers="headers"
+				:items="$store.state.samples"
+				item-key="name"
+				show-select
+				class="elevation-1"
+		>
+		</v-data-table>
 
     <label for="cut">part length: </label><input id="cut" v-model.number="cutFactor">
 
@@ -26,27 +24,25 @@
 </template>
 
 <script>
-import CheckedList from '../components/CheckedList.vue'
-
 export default {
   name: 'Slicer',
   data: () => {
     return {
       chosenViruses: [],
       cutFactor: 5,
-      nbMutation: 10
+      nbMutation: 10,
+			headers: [
+				{text: "Name", value: "name"},
+				{text: "Code", value: "code"}
+			]
     }
-  },
-  components: {
-    CheckedList
   },
   methods: {
     cut: function () {
       if (this.cutFactor === 0) return;
       this.chosenViruses.forEach(e => {
-        let s = this.$store.state.samples[e];
-        for (let i = 0; i < s.code.length; i += this.cutFactor) {
-          this.$store.commit("addPart", {code: s.code.substring(i, i + this.cutFactor)});
+        for (let i = 0; i < e.code.length; i += this.cutFactor) {
+          this.$store.commit("addPart", {code: e.code.substring(i, i + this.cutFactor)});
         }
       });
       // remove chosen viruses
@@ -61,13 +57,12 @@ export default {
 
       this.chosenViruses.forEach(e => {
         let newCode;
-        let s = this.$store.state.samples[e];
         for (let i = 0; i < this.nbMutation; i++) {
-          let idx = Math.floor(Math.random() * s.code.length);
+          let idx = Math.floor(Math.random() * e.code.length);
           let chr = String.fromCharCode(Math.floor(Math.random() * 4) + "A".charCodeAt(0));
-          newCode = s.code.substring(0, idx) + chr + s.code.substring(idx + 1);
-          s.code = newCode;
-          s.updateCaracs();
+          newCode = e.code.substring(0, idx) + chr + e.code.substring(idx + 1);
+          e.code = newCode;
+          e.updateCaracs();
         }
       });
     }
