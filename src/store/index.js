@@ -22,7 +22,15 @@ export default new Vuex.Store({
             state.basket.push(virus);
         },
         removePart(state, part) {
-            state.parts.splice(part, 1)
+            let idx = [];
+            for (let i = 0; i < state.parts.length; i++) {
+                if (state.parts[i].name === part.name && state.parts[i].code === part.code && state.parts[i].mortalite === part.mortalite) {
+                    idx.push(i);
+                }
+            }
+            idx.forEach(e => {
+                state.parts.splice(e, 1);
+            })
         },
         removeSample(state, virus) {
             let idx = [];

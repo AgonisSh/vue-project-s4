@@ -1,15 +1,16 @@
 <template>
 	<div>
-		<table border="0">
-			<tr>
-				<td><h1>Parts</h1></td>
-			</tr>
-			<tr>
-				<td>
-					<CheckedList :fields="['code']" :entries="$store.state.parts" @chosen-changed="chosenParts = $event"/>
-				</td>
-			</tr>
-		</table>
+		<td><h1>Parts</h1></td>
+		<v-data-table
+				v-model="chosenParts"
+				:headers="headers"
+				:items="$store.state.parts"
+				item-key="code"
+				show-select
+				class="elevation-1"
+		>
+		</v-data-table>
+
 		<v-btn class="light-blue darken-3 white--text" :disabled="chosenParts.length === 0" @click="mix()">Mixing</v-btn>
 
 		<hr/>
@@ -25,18 +26,17 @@
 
 <script>
 import {Virus} from '@/model'
-import CheckedList from '../components/CheckedList.vue'
 
 export default {
 	name: 'Mixer',
 	data: () => {
 		return {
 			chosenParts: [],
-			newVirus: null
+			newVirus: null,
+			headers: [
+				{text: "Code", value: "code"}
+			]
 		}
-	},
-	components: {
-		CheckedList
 	},
 	methods: {
 		mix: function () {
@@ -47,7 +47,7 @@ export default {
 			for (let i = 0; i < nb; i++) {
 				// choose randomly a part among the selected ones
 				let idx = Math.floor(Math.random() * chosen.length);
-				let p = this.$store.state.parts[chosen[idx]];
+				let p = chosen[idx];
 				newCode = newCode + p.code;
 				chosen.splice(idx, 1);
 			}

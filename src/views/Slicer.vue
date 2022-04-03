@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Labo</h1>
+    <h1>Slicer</h1>
 		<v-data-table
 				v-model="chosenViruses"
 				:headers="headers"
