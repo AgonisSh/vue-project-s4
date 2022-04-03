@@ -1,6 +1,7 @@
 <template>
   <div>
 		<v-data-table
+        app
 				:headers="headers"
 				:items="$store.state.collec"
 				item-key="name"
@@ -12,7 +13,7 @@
 					<td> {{item.code}}</td>
 					<td> {{item.mortalite}}</td>
 					<td>
-						<v-btn class="light-blue darken-3 white--text" @click="$router.push({path: '/library/addbasket?name='+item.name+'&code='+item.code})">
+						<v-btn class="red lighten-2 white--text" @click="$router.push({path: '/library/addbasket?name='+item.name+'&code='+item.code})">
 							Clone virus for the lab
 						</v-btn>
 					</td>
@@ -28,7 +29,7 @@
 		data: () => {
 			return {
 				headers: [
-					{ text: "Name", value: "name" },
+					{ text: "Name", value: "name"},
 					{ text: "Code", value: "code"},
 					{ text: "Mortality", value: "mortalite"},
 					{ text: "", value: "button", sortable: false}

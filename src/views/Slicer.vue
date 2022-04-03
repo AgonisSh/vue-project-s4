@@ -11,15 +11,16 @@
 		>
 		</v-data-table>
 
+
     <label for="cut">part length: </label><input id="cut" v-model.number="cutFactor">
 
-    <v-btn class="light-blue darken-3 white--text" :disabled="chosenViruses.length===0" @click="cut()">Cut</v-btn>
+    <v-btn class="red darken-1 white--text ma-2" :disabled="chosenViruses.length===0" @click="cut()">Cut</v-btn>
 
     <label for="mute">nb mutations: </label><input id="mute" v-model.number="nbMutation">
-    <v-btn class="light-blue darken-3 white--text" :disabled="chosenViruses.length===0" @click="mutation()">Mutation</v-btn>
+    <v-btn class="green lighten-1 white--text ma-2" :disabled="chosenViruses.length===0" @click="mutation()">Mutation</v-btn>
 
     <hr/>
-    <v-btn class="light-blue darken-3 white--text" @click="$router.push({path:'/labo/mix'})">Go to mixer</v-btn>
+    <v-btn class="light-blue darken-3 white--text ma-2" @click="$router.push({path:'/labo/mix'})">Go to mixer</v-btn>
   </div>
 </template>
 

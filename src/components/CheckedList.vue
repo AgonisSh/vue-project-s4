@@ -10,6 +10,16 @@
         </td>
       </tr>
     </table>
+
+    <v-data-table
+        :headers="fields"
+        :items="entries"
+        :items-per-page="4"
+        class="elevation-2"
+        app
+    >
+    </v-data-table>
+
   </div>
 </template>
 
