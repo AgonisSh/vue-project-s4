@@ -1,16 +1,39 @@
 <template>
   <div>
-    <table>
-      <tr><td>Name</td><td>Code</td><td>% Mortality</td></tr>
-      <tr v-for="(v,index) in $store.state.collec" :key="index"><td>{{v.name}}</td><td>{{v.code}}</td><td>{{v.mortalite}}</td><td> <button @click="$router.push({path: '/library/addbasket?name='+v.name+'&code='+v.code})">Clone virus for the lab</button></td></tr>
-    </table>
+		<v-data-table
+				:headers="headers"
+				:items="$store.state.collec"
+				item-key="name"
+		>
+			<template v-slot:item="{item}">
+				<tr>
+					<td> {{item.name}}</td>
+					<td> {{item.code}}</td>
+					<td> {{item.mortalite}}</td>
+					<td>
+						<v-btn class="light-blue darken-3 white--text" @click="$router.push({path: '/library/addbasket?name='+item.name+'&code='+item.code})">
+							Clone virus for the lab
+						</v-btn>
+					</td>
+				</tr>
+			</template>
+		</v-data-table>
   </div>
 </template>
 
 <script>
-
   export default {
-    name: 'Articles'
+    name: 'Articles',
+		data: () => {
+			return {
+				headers: [
+					{ text: "Name", value: "name" },
+					{ text: "Code", value: "code"},
+					{ text: "Mortality", value: "mortality"},
+					{ text: "", value: "button", sortable: false}
+				]
+			}
+		}
   }
 </script>
 
